@@ -200,8 +200,23 @@ tr.submit button {
     margin-top: 20px;
 }
 
+input {
+    border: 1px solid #000000;
+}
+
 input, button {
+    border: 1px solid #000000;
     margin-left: 10px;
+}
+
+@media only screen and (max-width : 992px) {
+    input {
+        max-width: 230px;
+    }
+}
+
+.timestamp {
+    display: block;
 }
 
 /* ==========================================================================
