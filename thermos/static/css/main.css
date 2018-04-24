@@ -154,16 +154,23 @@ nav a:hover {
    Author's custom styles
    ========================================================================== */
 
-a {
-    color: #8f540d;
+a,
+a:visited {
+    color: #1e5373;
 }
 
-a:hover {
+a:hover,
+aside a:visited,
+aside a:visited:hover {
     color: #d39447;
 }
 
-a:visited {
-    color: #1e5373;
+aside a {
+    color: #ffd6a3;
+}
+
+aside a:hover, {
+    color: #f5bb73;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -211,12 +218,47 @@ input, button {
 
 @media only screen and (max-width : 992px) {
     input {
-        max-width: 230px;
+        max-width: 220px;
     }
 }
 
 .timestamp {
     display: block;
+}
+
+/* bookmark list styling */
+ul.bookmarks {
+    list-styling: none none;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.bookmarks {
+    border-top: 1px solid #7ea6bf;
+    padding: 1em 0;
+}
+
+a.header {
+    color: #326786;
+    display: block;
+    text-decoration: none;
+}
+
+a.header h3 {
+    margin: 0 0;
+}
+
+div.info {
+    color: #666666;
+    font-size: .95em;
+}
+
+span.edit-links {
+    float: right;
+}
+
+#no-delete {
+    text-decoration: none;
 }
 
 /* ==========================================================================

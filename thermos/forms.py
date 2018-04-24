@@ -9,6 +9,8 @@ from thermos.models import User
 class BookmarkForm(FlaskForm):
     url = URLField('Enter the URL:', validators=[DataRequired(), url()])
     description = StringField('Enter an optional description:')
+    tags = StringField('Tags', validators=[Regexp(r'^[a-zA-Z0-9, ]*$',
+                                                  message='Tags can only contains letters and numbers')])
 
     def validate(self):
         if not self.url.data.startswith('http://') or \
@@ -20,6 +22,11 @@ class BookmarkForm(FlaskForm):
 
         if not self.description.data:
             self.description.data = self.url.data
+
+        stripped = [t.strip() for t in self.tags.data.split(',')]
+        not_empty = [tag for tag in stripped if tag]
+        tag_set = set(not_empty)
+        self.tags.data = ','.join(tag_set)
 
         return True
 
