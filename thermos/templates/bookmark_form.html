@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% from 'form_macros.html' import render_field %}
+
+{% block title %}
+Thermos -- {{ title }}
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<!--<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />-->
+{% endblock %}
+
+{% block content %}
+    <section>
+        <h1 style="clear: both">{{ title }}</h1>
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <table>
+                {{ render_field(form.url, size = 50) }}
+                {{ render_field(form.description, size = 50) }}
+                {{ render_field(form.tags, size = 50, id='tags') }}
+                <tr class="submit">
+                    <td></td>
+                    <td><button type="submit">Submit</button></td>
+                </tr>
+            </table>
+        </form>
+    </section>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.full.min.js"></script>
+<script>
+    $(document).ready(() => {
+        const _tags = {{ all_tags()|map(attribute='name')|list|tojson|safe }};
+        <!--$('#tags').select2({tags: _tags, tokenSeparators: [',', ' ']});-->
+    });
+</script>
+{% endblock %}
