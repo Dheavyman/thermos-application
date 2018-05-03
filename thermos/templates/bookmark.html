@@ -11,21 +11,21 @@
         <span class="tags">
             {% if bookmark.tags %}
                 {% for tag in bookmark._tags %}
-                    <a href="{{ url_for('tag', name=tag) }}">{{ tag }}</a>
+                    <a href="{{ url_for('bookmarks.tag', name=tag) }}">{{ tag }}</a>
                 {% endfor %}
             {% else %}
                 No tags
             {% endif %}
         </span>
         <br>
-        Added by <a href="{{ url_for('user', username=bookmark.user.username) }}">
+        Added by <a href="{{ url_for('bookmarks.user', username=bookmark.user.username) }}">
         {{ bookmark.user.username }}
     </a>
         {{ moment(bookmark.date).fromNow() }}.
         {% if current_user == bookmark.user and not nolinks %}
             <span class="edit-links">
-                <a href="{{ url_for('edit', bookmark_id=bookmark.id) }}">edit</a>
-                <a href="{{ url_for('delete', bookmark_id=bookmark.id) }}">delete</a>
+                <a href="{{ url_for('bookmarks.edit', bookmark_id=bookmark.id) }}">edit</a>
+                <a href="{{ url_for('bookmarks.delete', bookmark_id=bookmark.id) }}">delete</a>
             </span>
         {% endif %}
     </div>
