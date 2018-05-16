@@ -1,11 +1,12 @@
 import os
 
+from dotenv import load_dotenv
 from thermos import create_app, db
 from thermos.models import User, Bookmark, Tag
 from flask_script import Manager, prompt_bool
 from flask_migrate import Migrate, MigrateCommand
 
-
+load_dotenv()
 app = create_app(os.getenv('THERMOS_ENV') or 'dev')
 manager = Manager(app)
 migrate = Migrate(app, db)
@@ -15,7 +16,8 @@ manager.add_command('db', MigrateCommand)
 @manager.command
 def initdb():
     db.create_all()
-    db.session.add(User(username='Heavyman', email='heavyman@example.com', password='awesome'))
+    user = User(username='Heavyman', email='heavyman@example.com', password='awesome')
+    db.session.add(user)
     db.session.commit()
     print('Database initialized successfully')
 

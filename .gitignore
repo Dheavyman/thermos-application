@@ -3,3 +3,4 @@ venv/
 __pycache__/
 thermos/thermos.db
 .DS_Store
+.env
